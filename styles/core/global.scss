@@ -1,0 +1,100 @@
+:root {
+  //Colors
+  --color-black: #000;
+  --color-white: #fff;
+  --color-blue50: #0000ff80;
+  --color-blue: #0000ff;
+  --graditent: linear-gradient(
+    -45deg,
+    rgba(0, 0, 255, 1) 0%,
+    rgba(0, 128, 0, 1) 89%
+  );
+
+  //Type
+  --base-size: 1.8rem;
+  --scale: 1.125;
+  --h6-size: calc(var(--base-size) * var(--scale));
+  --h5-size: calc(var(--h6-size) * var(--scale));
+  --h4-size: calc(var(--h5-size) * var(--scale));
+  --h3-size: calc(var(--h4-size) * var(--scale));
+  --h2-size: calc(var(--h3-size) * var(--scale));
+  --h1-size: calc(var(--h2-size) * var(--scale));
+
+  //Generics
+  --transition: all 0.3s ease-in-out;
+  --box-shadow: 0 7px 14px -1px rgba(0, 0, 0, 0.26);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*::before,
+*:after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background: var(--graditent);
+  padding: 1.5rem;
+  font-weight: 400;
+  color: var(--color-black);
+  font-size: var(--base-size);
+}
+
+//Typography
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 2rem 0;
+}
+
+p {
+  line-height: 1.4;
+  margin-bottom: 2rem;
+}
+
+h1 {
+  font-size: var(--h1-size);
+}
+
+h2 {
+  font-size: var(--h2-size);
+}
+
+h3 {
+  font-size: var(--h3-size);
+}
+
+h4 {
+  font-size: var(--h4-size);
+}
+
+h5 {
+  font-size: var(--h5-size);
+}
+
+h6 {
+  font-size: var(--h6-size);
+}
+
+@media screen and (min-width: 991px) {
+  :root {
+    --scale: 1.2;
+  }
+
+  body {
+    padding: 3rem;
+  }
+}
