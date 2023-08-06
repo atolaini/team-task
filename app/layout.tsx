@@ -4,8 +4,11 @@ import type { Metadata } from 'next';
 import { Bai_Jamjuree } from 'next/font/google';
 
 import '../styles/core/global.scss';
+import classes from '../styles/layout.module.scss';
+
 import Pane from '@/components/layout/pane';
 import SideBar from '@/components/sidebar/sidebar';
+import CurrentWeek from '@/components/ui/current-week';
 
 const bai_jamjuree = Bai_Jamjuree({
   weight: ['400', '600'],
@@ -29,8 +32,8 @@ export default function RootLayout({
           <aside>
             <SideBar />
           </aside>
-          <main>
-            <p>main conten</p>
+          <main className={classes.mainContent}>
+            <CurrentWeek />
             {children}
           </main>
         </Pane>
