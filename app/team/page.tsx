@@ -1,5 +1,7 @@
+import CreateUser from '@/components/createUser/createUser';
+
 const Team = () => {
-  return <h3>Team Page</h3>;
+  return <CreateUser />;
 };
 
 export default Team;
