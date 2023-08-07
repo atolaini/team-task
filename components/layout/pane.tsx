@@ -1,4 +1,4 @@
-import classes from '@/styles/layout/layout.module.scss';
+import classes from '../../styles/layout.module.scss';
 
 interface PaneProps {
   children: React.ReactNode;

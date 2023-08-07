@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { createUser } from '@/utils/api';
+import { useRouter } from 'next/router';
 
 import FlexContainer from '../layout/flexContainer';
 import Button from '../ui/button';

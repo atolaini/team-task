@@ -1,4 +1,4 @@
-import classes from '@/styles/ui/button.module.scss';
+import classes from '../../styles/button.module.scss';
 
 interface ButtonProps {
   btnTxt: string;
@@ -8,12 +8,11 @@ interface ButtonProps {
   ) => void;
 }
 
-const Button = ({ btnTxt, onClick, type }: ButtonProps) => {
+const Button = ({ btnTxt, onClick }: ButtonProps) => {
   return (
     <button
       className={classes.btn}
       onClick={onClick}
-      type={type === 'submit' ? 'submit' : 'button'}
     >
       {btnTxt}
     </button>

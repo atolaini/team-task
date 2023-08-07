@@ -1,6 +1,6 @@
 import Card from './card';
 
-import classes from '@/styles/components/current-week.module.scss';
+import classes from '../../styles/current-week.module.scss';
 
 const CurrentWeek = () => {
   const currentDate = new Date();

@@ -1,8 +1,5 @@
 'use-client';
 
-import classes from '@/styles/forms/input.module.scss';
-import React from 'react';
-
 interface InputProps {
   label: string;
   type?: string;
@@ -26,7 +23,7 @@ const Input = ({
 
   if (inputType === 'text-area') {
     return (
-      <div className={classes.formControl}>
+      <div>
         <label>{label}</label>
         <textarea onChange={onChangeHandler} />
       </div>
@@ -40,7 +37,6 @@ const Input = ({
           id={id}
           name={name}
           onChange={onChangeHandler}
-          required={isRequired}
         />
       </div>
     );
