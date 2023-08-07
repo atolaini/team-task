@@ -3,7 +3,7 @@ import classes from '@/styles/ui/button.module.scss';
 interface ButtonProps {
   btnTxt: string;
   type?: string;
-  onClick: (
+  onClick?: (
     event: React.MouseEvent<HTMLButtonElement> | React.SyntheticEvent
   ) => void;
 }

@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { createUser } from '@/utils/api';
 
 import FlexContainer from '../layout/flexContainer';
@@ -10,12 +10,17 @@ import Input from '../forms/input';
 
 const CreateUser = () => {
   const [showModal, setShowModal] = useState(false);
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
 
-  const onSubmitHandler = (event: React.SyntheticEvent) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
+  const onSubmitHandler = (e: React.SyntheticEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const nameObject = {
+      firstName: formData.get('first name') ?? '',
+      lastName: formData.get('last name') ?? '',
+    };
+
+    createUser(nameObject);
+    setShowModal(false);
   };
 
   return (
@@ -28,22 +33,24 @@ const CreateUser = () => {
         <Modal>
           <Form
             title='Add team member'
-            action='/api/team'
             onSubmit={onSubmitHandler}
           >
             <FlexContainer flexFlow='row'>
               <Input
                 label='First Name'
                 isRequired={true}
+                id='first name'
+                name='first name'
               />
               <Input
                 label='Last Name'
                 isRequired={true}
+                id='last name'
+                name='last name'
               />
             </FlexContainer>
             <Button
               btnTxt='Add Team member'
-              onClick={onSubmitHandler}
               type='submit'
             />
           </Form>

@@ -4,15 +4,13 @@ import { Generics } from '@/utils/interfaces';
 
 interface FormProps extends Generics {
   title: string;
-  action: string;
-  onSubmit: () => void;
+  onSubmit: (e: React.SyntheticEvent<HTMLFormElement>) => void;
 }
 
-const Form = ({ children, title, action, onSubmit }: FormProps) => {
+const Form = ({ children, title, onSubmit }: FormProps) => {
   return (
     <form
       className={classes.form}
-      action={action}
       onSubmit={onSubmit}
     >
       <h2>{title}</h2>

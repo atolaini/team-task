@@ -8,7 +8,9 @@ interface InputProps {
   type?: string;
   inputType?: string;
   isRequired: boolean;
-  onChangeHandler: (event: React.ChangeEvent) => void;
+  id: string;
+  name: string;
+  onChangeHandler?: (event: React.ChangeEvent) => void;
 }
 
 const Input = ({
@@ -17,6 +19,8 @@ const Input = ({
   inputType,
   onChangeHandler,
   isRequired,
+  id,
+  name,
 }: InputProps) => {
   const required = isRequired ? 'required' : null;
 
@@ -30,9 +34,11 @@ const Input = ({
   } else {
     return (
       <div className={`${classes.formControl} ${required}`}>
-        <label>{label}</label>
+        <label htmlFor={id}>{label}</label>
         <input
           type={type}
+          id={id}
+          name={name}
           onChange={onChangeHandler}
           required={isRequired}
         />
