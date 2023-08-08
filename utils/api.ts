@@ -7,7 +7,7 @@ export const createUser = async (name: {
   lastName: FormDataEntryValue;
 }) => {
   const res = await fetch(
-    new Request(createURL('/api/team'), {
+    new Request(createURL('/api/users'), {
       method: 'POST',
       body: JSON.stringify({
         firstName: name.firstName,
@@ -22,21 +22,5 @@ export const createUser = async (name: {
     return data.data;
   } else {
     throw new Error(`Something went wrong ${Error}`);
-  }
-};
-
-export const getAllUsers = async () => {
-  const res = await fetch(
-    new Request(createURL('/api/team'), {
-      method: 'GET',
-    })
-  );
-
-  if (res.ok) {
-    const data = await res.json();
-
-    console.log(data);
-
-    return data.data;
   }
 };
