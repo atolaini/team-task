@@ -1,13 +1,13 @@
 'use client';
 import React, { useState } from 'react';
 import { createUser } from '@/utils/api';
-import { useRouter } from 'next/router';
 
 import FlexContainer from '../layout/flexContainer';
 import Button from '../ui/button';
 import Modal from '../ui/modal';
 import Form from '../forms/form';
 import Input from '../forms/input';
+import CloseBtn from '../ui/closeBtn';
 
 const CreateUser = () => {
   const [showModal, setShowModal] = useState(false);
@@ -36,6 +36,11 @@ const CreateUser = () => {
             title='Add team member'
             onSubmit={onSubmitHandler}
           >
+            <CloseBtn
+              onClick={() => {
+                setShowModal(false);
+              }}
+            />
             <FlexContainer flexFlow='row'>
               <Input
                 label='First Name'

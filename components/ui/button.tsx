@@ -1,4 +1,4 @@
-import classes from '../../styles/button.module.scss';
+import classes from '@/styles/ui/button.module.scss';
 
 interface ButtonProps {
   btnTxt: string;

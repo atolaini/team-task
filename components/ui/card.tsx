@@ -1,5 +1,5 @@
-import classes from '../../styles/card.module.scss';
-import { Generics } from '@/lib/interfaces';
+import classes from '@/styles/ui/card.module.scss';
+import { Generics } from '@/utils/interfaces';
 
 interface CardProps extends Generics {
   className?: string;

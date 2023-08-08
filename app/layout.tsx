@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import { Bai_Jamjuree } from 'next/font/google';
 
 import '../styles/core/global.scss';
-import classes from '../styles/layout.module.scss';
+import classes from '@/styles/layout/layout.module.scss';
 
 import Pane from '@/components/layout/pane';
 import SideBar from '@/components/sidebar/sidebar';

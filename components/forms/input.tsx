@@ -1,4 +1,6 @@
-'use-client';
+import classes from '@/styles/forms/input.module.scss';
+
+('use-client');
 
 interface InputProps {
   label: string;

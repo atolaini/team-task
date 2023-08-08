@@ -1,11 +1,11 @@
 'use client';
 
-import classes from '../../styles/modal.module.scss';
+import classes from '@/styles/components/modal.module.scss';
 
 import { MutableRefObject, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
-import { Generics } from '@/lib/interfaces';
+import { Generics } from '@/utils/interfaces';
 
 const Modal = ({ children }: Generics) => {
   const elRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
