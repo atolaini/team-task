@@ -1,16 +1,14 @@
 'use client';
-import React, { useState } from 'react';
 import { createUser } from '@/utils/api';
+import { useRouter } from 'next/navigation';
 
 import FlexContainer from '../layout/flexContainer';
 import Button from '../ui/button';
-import Modal from '../ui/modal';
 import Form from '../forms/form';
 import Input from '../forms/input';
-import CloseBtn from '../ui/closeBtn';
 
 const CreateUser = () => {
-  const [showModal, setShowModal] = useState(false);
+  const router = useRouter();
 
   const onSubmitHandler = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,47 +19,34 @@ const CreateUser = () => {
     };
 
     createUser(nameObject);
-    setShowModal(false);
+    router.push('/team');
   };
 
   return (
     <div>
-      <Button
-        btnTxt='Add team member'
-        onClick={() => setShowModal(true)}
-      />
-      {showModal ? (
-        <Modal>
-          <Form
-            title='Add team member'
-            onSubmit={onSubmitHandler}
-          >
-            <CloseBtn
-              onClick={() => {
-                setShowModal(false);
-              }}
-            />
-            <FlexContainer flexFlow='row'>
-              <Input
-                label='First Name'
-                isRequired={true}
-                id='first name'
-                name='first name'
-              />
-              <Input
-                label='Last Name'
-                isRequired={true}
-                id='last name'
-                name='last name'
-              />
-            </FlexContainer>
-            <Button
-              btnTxt='Add Team member'
-              type='submit'
-            />
-          </Form>
-        </Modal>
-      ) : null}
+      <Form
+        title='Add team member'
+        onSubmit={onSubmitHandler}
+      >
+        <FlexContainer flexFlow='row'>
+          <Input
+            label='First Name'
+            isRequired={true}
+            id='first name'
+            name='first name'
+          />
+          <Input
+            label='Last Name'
+            isRequired={true}
+            id='last name'
+            name='last name'
+          />
+        </FlexContainer>
+        <Button
+          btnTxt='Add Team member'
+          type='submit'
+        />
+      </Form>
     </div>
   );
 };

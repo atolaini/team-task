@@ -24,3 +24,19 @@ export const createUser = async (name: {
     throw new Error(`Something went wrong ${Error}`);
   }
 };
+
+export const getAllUsers = async () => {
+  const res = await fetch(
+    new Request(createURL('/api/team'), {
+      method: 'GET',
+    })
+  );
+
+  if (res.ok) {
+    const data = await res.json();
+
+    console.log(data);
+
+    return data.data;
+  }
+};

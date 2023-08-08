@@ -1,38 +1,36 @@
-import CreateUser from '@/components/createUser/createUser';
 import { prisma } from '@/utils/db';
 import Link from 'next/link';
+
+import GetAllUsers from '@/components/createUser/getAllUsers';
 
 import FlexContainer from '@/components/layout/flexContainer';
 import UserCard from '@/components/createUser/userCard';
 import { get } from 'http';
+import Button from '@/components/ui/button';
 
-const getUsers = async () => {
-  const users = await prisma.user.findMany({
-    orderBy: {
-      firstName: 'asc',
-    },
-  });
+// const getUsers = async () => {
+//   const users = await prisma.user.findMany({
+//     orderBy: {
+//       firstName: 'asc',
+//     },
+//   });
 
-  return users;
-};
+//   return users;
+// };
 
 const Team = async () => {
-  const users = await getUsers();
+  // const users = await getUsers();
 
   return (
     <>
-      <CreateUser />
       <div>
-        <FlexContainer flexFlow='col'>
-          {users.map((user) => (
-            <Link
-              key={user.id}
-              href={`/team/${user.id}`}
-            >
-              <UserCard user={user} />
-            </Link>
-          ))}
-        </FlexContainer>
+        <GetAllUsers />
+        <Link href='/team/add-team-member'>
+          <Button
+            type='button'
+            btnTxt='Add team member'
+          />
+        </Link>
       </div>
     </>
   );
