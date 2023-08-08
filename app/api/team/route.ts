@@ -11,10 +11,11 @@ export const POST = async (req: NextRequest) => {
       lastName: data.lastName,
     },
   });
+  console.log('ravalidating');
 
   revalidatePath('/users');
 
-  console.log('ravalidating');
+  console.log('validated');
 
   return NextResponse.json({ data: user });
 };

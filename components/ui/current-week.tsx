@@ -3,8 +3,8 @@ import Card from './card';
 import classes from '@/styles/components/current-week.module.scss';
 
 const CurrentWeek = () => {
-  const currentDate = new Date();
-  const startDate = new Date(currentDate.getFullYear(), 0, 1);
+  const currentDate: any = new Date();
+  const startDate: any = new Date(currentDate.getFullYear(), 0, 1);
   const days = Math.floor((currentDate - startDate) / (24 * 60 * 60 * 1000));
   const currentYear = currentDate.getFullYear();
 

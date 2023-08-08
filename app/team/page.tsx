@@ -6,7 +6,11 @@ import UserCard from '@/components/createUser/userCard';
 import Button from '@/components/ui/button';
 
 const getUsers = async () => {
+  console.log('fetching data');
+
   const users = await prisma.user.findMany();
+
+  console.log(users);
 
   return users;
 };
