@@ -1,0 +1,37 @@
+.formControl {
+  display: flex;
+  flex-flow: column;
+  margin-bottom: 2rem;
+  width: 100%;
+
+  &.required {
+    label {
+      &::after {
+        display: block;
+      }
+    }
+  }
+
+  label {
+    margin-bottom: 1rem;
+
+    &::after {
+      content: '*';
+      display: none;
+    }
+  }
+
+  input {
+    border-radius: 1rem;
+    padding: 1.2rem 1rem;
+    outline: none;
+    border: none;
+    position: relative;
+    transition: var(--transition);
+    border: 2px solid var(--color-white);
+
+    &:focus {
+      border: 2px solid var(--color-blue);
+    }
+  }
+}

@@ -1,12 +1,14 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import classes from '@/styles/components/modal.module.scss';
+
+import { MutableRefObject, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { Generics } from '@/lib/interfaces';
-import { Divide } from 'react-feather';
+
+import { Generics } from '@/utils/interfaces';
 
 const Modal = ({ children }: Generics) => {
-  const elRef = useRef(null);
+  const elRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
 
   if (!elRef.current) {
     elRef.current = document.createElement('div');
@@ -14,12 +16,24 @@ const Modal = ({ children }: Generics) => {
 
   useEffect(() => {
     const modalRoot = document.getElementById('modal');
+
+    if (!modalRoot || !elRef.current) {
+      return;
+    }
+
     modalRoot?.appendChild(elRef.current);
 
-    return () => modalRoot?.removeChild(elRef.current);
+    return () => {
+      if (elRef.current) {
+        modalRoot?.removeChild(elRef.current);
+      }
+    };
   }, []);
 
-  return createPortal(<div>{children}</div>, elRef.current);
+  return createPortal(
+    <div className={classes.modal}>{children}</div>,
+    elRef.current
+  );
 };
 
 export default Modal;

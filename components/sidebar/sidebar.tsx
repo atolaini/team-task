@@ -1,7 +1,7 @@
 import { Home, Users } from 'react-feather';
 import Link from 'next/link';
 
-import classes from '../../styles/sidebar.module.scss';
+import classes from '@/styles/layout/sidebar.module.scss';
 
 const SideBar = () => {
   const nodes = [

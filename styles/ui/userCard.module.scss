@@ -1,0 +1,17 @@
+.userCard {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+  transition: var(--transition);
+  transform: scale(1);
+
+  .label {
+    color: var(--color-black);
+    text-decoration: none;
+  }
+
+  &:hover {
+    transform: scale(1.01);
+  }
+}

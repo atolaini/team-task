@@ -1,8 +1,12 @@
-import classes from '../../styles/card.module.scss';
-import { Generics } from '@/lib/interfaces';
+import classes from '@/styles/ui/card.module.scss';
+import { Generics } from '@/utils/interfaces';
 
-const Card = ({ children }: Generics) => {
-  return <div className={classes.card}>{children}</div>;
+interface CardProps extends Generics {
+  className?: string;
+}
+
+const Card = ({ children, className }: CardProps) => {
+  return <div className={`${classes.card} ${className}`}>{children}</div>;
 };
 
 export default Card;
