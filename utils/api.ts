@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-const createURL = (path) => window.location.origin + path;
+const createURL = (path: string) => window.location.origin + path;
 
 export const createUser = async (name: {
   firstName: FormDataEntryValue;

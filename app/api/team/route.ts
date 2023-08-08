@@ -1,6 +1,7 @@
 import { prisma } from '@/utils/db';
 import { NextRequest, NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
+import { update } from '@/utils/actions';
 
 export const POST = async (req: NextRequest) => {
   const data = await req.json();
@@ -12,7 +13,7 @@ export const POST = async (req: NextRequest) => {
     },
   });
 
-  revalidatePath('/team');
+  update(['/team']);
 
   return NextResponse.json({ data: user });
 };
