@@ -4,7 +4,6 @@ import classes from '@/styles/forms/input.module.scss';
 
 import { createURL } from '@/utils/api';
 import { useEffect, useState } from 'react';
-import GetAllUsers from '../createUser/getAllUsers';
 
 const UserSelect = () => {
   const [users, setUsers] = useState([]);
@@ -30,6 +29,7 @@ const UserSelect = () => {
     <div className={classes.formControl}>
       <label htmlFor='select user'>Select Team member</label>
       <select
+        className={classes.select}
         name='select user'
         id='select user'
       >
