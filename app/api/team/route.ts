@@ -12,5 +12,7 @@ export const POST = async (req: NextRequest) => {
     },
   });
 
+  revalidatePath('/team');
+
   return NextResponse.json({ data: user });
 };

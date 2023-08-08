@@ -1,13 +1,13 @@
-const createUrl = (path: string) => {
-  return window.location.origin + path;
-};
+import { NextResponse } from 'next/server';
+
+const createURL = (path) => window.location.origin + path;
 
 export const createUser = async (name: {
   firstName: FormDataEntryValue;
   lastName: FormDataEntryValue;
 }) => {
   const res = await fetch(
-    new Request(createUrl('/api/team'), {
+    new Request(createURL('/api/team'), {
       method: 'POST',
       body: JSON.stringify({
         firstName: name.firstName,
