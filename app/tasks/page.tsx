@@ -4,6 +4,7 @@ const TaskPage = () => {
   return (
     <div>
       <h2>Tasks</h2>
+      <CreateTask />
     </div>
   );
 };

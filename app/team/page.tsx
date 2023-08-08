@@ -4,21 +4,22 @@ import Link from 'next/link';
 import FlexContainer from '@/components/layout/flexContainer';
 import UserCard from '@/components/createUser/userCard';
 import Button from '@/components/ui/button';
+import GetAllUsers from '@/components/createUser/getAllUsers';
 
-const getUsers = async () => {
-  console.log('fetching data');
+// const getUsers = async () => {
+//   console.log('fetching data');
 
-  const users = await prisma.user.findMany();
+//   const users = await prisma.user.findMany();
 
-  console.log(users);
+//   console.log(users);
 
-  return users;
-};
+//   return users;
+// };
 
 const Team = async () => {
-  const users = await getUsers();
+  //const users = await getUsers();
 
-  console.log(users);
+  //console.log(users);
 
   return (
     <>
@@ -30,14 +31,7 @@ const Team = async () => {
           />
         </Link>
         <FlexContainer flexFlow='col'>
-          {users.map((user) => (
-            <Link
-              key={user.id}
-              href={`/team/${user.id}`}
-            >
-              <UserCard user={user} />
-            </Link>
-          ))}
+          <GetAllUsers />
         </FlexContainer>
       </div>
     </>

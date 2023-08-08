@@ -11,11 +11,12 @@ export const POST = async (req: NextRequest) => {
       lastName: data.lastName,
     },
   });
-  console.log('ravalidating');
-
-  revalidatePath('/users');
-
-  console.log('validated');
 
   return NextResponse.json({ data: user });
+};
+
+export const GET = async () => {
+  const users = await prisma.user.findMany();
+
+  return NextResponse.json(users);
 };
