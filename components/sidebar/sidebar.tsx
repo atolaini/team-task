@@ -1,4 +1,4 @@
-import { Home, Users } from 'react-feather';
+import { Home, Users, Edit3 } from 'react-feather';
 import Link from 'next/link';
 
 import classes from '@/styles/layout/sidebar.module.scss';
@@ -24,6 +24,16 @@ const SideBar = () => {
       ),
       href: '/team',
       label: 'Team',
+    },
+    {
+      icon: (
+        <Edit3
+          color='#333'
+          size={38}
+        />
+      ),
+      href: '/tasks',
+      label: 'Tasks',
     },
   ];
 
