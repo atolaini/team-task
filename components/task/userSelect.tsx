@@ -2,29 +2,11 @@
 
 import classes from '@/styles/forms/input.module.scss';
 
-import { createURL } from '@/utils/api';
-import { useEffect, useState } from 'react';
+interface UserSelectProps {
+  users: [];
+}
 
-const UserSelect = () => {
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    const response = async () => {
-      const users = await fetch(
-        new Request(createURL('/api/team/'), {
-          method: 'GET',
-        })
-      );
-
-      if (users.ok) {
-        const data = await users.json();
-
-        setUsers(data);
-      }
-    };
-    response();
-  }, []);
-
+const UserSelect = ({ users }: UserSelectProps) => {
   return (
     <div className={classes.formControl}>
       <label htmlFor='select user'>Select Team member</label>
@@ -37,6 +19,7 @@ const UserSelect = () => {
           <option
             key={user.id}
             value={`${user.firstName} ${user.lastName}`}
+            data-id={user.id}
           >
             {user.firstName} {user.lastName}
           </option>

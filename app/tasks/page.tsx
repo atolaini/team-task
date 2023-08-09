@@ -1,10 +1,15 @@
 import CreateTask from '@/components/task/createTask';
 
+import TaskContainer from '@/components/layout/taskContainer';
+import SideTaskList from '@/components/task/sideTaskList';
+
 const TaskPage = () => {
   return (
     <div>
-      <h2>Tasks</h2>
-      <CreateTask />
+      <TaskContainer>
+        <CreateTask />
+        <SideTaskList />
+      </TaskContainer>
     </div>
   );
 };
