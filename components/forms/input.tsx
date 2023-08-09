@@ -9,6 +9,7 @@ interface InputProps {
   isRequired: boolean;
   id: string;
   name: string;
+  value?: string;
   onChangeHandler?: (event: React.ChangeEvent) => void;
 }
 
@@ -20,6 +21,7 @@ const Input = ({
   isRequired,
   id,
   name,
+  value,
 }: InputProps) => {
   const required = isRequired ? 'required' : null;
 
@@ -39,6 +41,7 @@ const Input = ({
           id={id}
           name={name}
           onChange={onChangeHandler}
+          value={value}
         />
       </div>
     );

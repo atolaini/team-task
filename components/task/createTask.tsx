@@ -1,19 +1,41 @@
 'use client';
 import classes from '@/styles/forms/input.module.scss';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
-import { createURL } from '@/utils/api';
 import { getUsers } from '@/utils/api';
 
 import Form from '../forms/form';
 import Input from '../forms/input';
-import UserSelect from './userSelect';
 import Button from '../ui/button';
 
 const CreateTask = () => {
-  const [task, setTask] = useState([{}]);
+  const [userId, setUserId] = useState('');
+  const [title, setTitle] = useState('');
+  const [dueDate, setDueDate] = useState('');
+  const [hours, setHours] = useState('');
+  const [notes, setNotes] = useState('');
   const [users, setUsers] = useState([]);
+
+  const onChangeHandlerSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setUserId(e.target.value);
+  };
+
+  const onChangeHandlerTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
+  };
+
+  const onChangeHandlerDate = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setDueDate(e.target.value);
+  };
+
+  const onChangeHandlerHours = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setHours(e.target.value);
+  };
+
+  const onChangeHandlerNotes = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNotes(e.target.value);
+  };
 
   useEffect(() => {
     const response = async () => {
@@ -26,16 +48,21 @@ const CreateTask = () => {
 
   const submitFormHandler = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const taskObject = {
-      title: formData.get('task title') ?? '',
-      date: formData.get('due date') ?? '',
-      hours: formData.get('hours') ?? '',
-      notes: formData.get('notes') ?? '',
-      id: formData.get('select user') ?? '',
+    const task = {
+      userId: userId,
+      title: title,
+      dueDate: dueDate,
+      hours: hours,
+      notes: notes,
     };
 
-    setTask((prevState) => [...prevState, taskObject]);
+    setUserId('');
+    setTitle('');
+    setDueDate('');
+    setHours('');
+    setNotes('');
+
+    console.log(task);
   };
 
   return (
@@ -47,9 +74,11 @@ const CreateTask = () => {
         <label htmlFor='select user'>Select Team member</label>
         <select
           className={classes.select}
-          name='select user'
-          id='select user'
+          name='selectUser'
+          id='userId'
+          onChange={onChangeHandlerSelect}
         >
+          <option>Select user</option>
           {users.map((user) => (
             <option
               key={user.id}
@@ -63,25 +92,33 @@ const CreateTask = () => {
       <Input
         label='Task title'
         id='task title'
-        name='task title'
+        name='title'
+        onChangeHandler={onChangeHandlerTitle}
+        value={title}
       />
       <Input
         type='date'
         label='Due date'
         id='due date'
-        name='due date'
+        name='dueDate'
+        onChangeHandler={onChangeHandlerDate}
+        value={dueDate}
       />
       <Input
         type='number'
         label='Hours'
         id='hours'
         name='hours'
+        onChangeHandler={onChangeHandlerHours}
+        value={hours}
       />
       <Input
         type='text-area'
         label='Notes'
         id='notes'
         name='notes'
+        onChangeHandler={onChangeHandlerNotes}
+        value={notes}
       />
       <Button
         btnTxt='Add Task'
