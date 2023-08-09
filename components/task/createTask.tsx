@@ -1,6 +1,10 @@
 'use client';
 import classes from '@/styles/forms/input.module.scss';
 
+interface CreateTaskProps {
+  onSaveFormData: (taskObj: {}) => void;
+}
+
 import { useState, useEffect, useRef } from 'react';
 
 import { getUsers } from '@/utils/api';
@@ -9,7 +13,8 @@ import Form from '../forms/form';
 import Input from '../forms/input';
 import Button from '../ui/button';
 
-const CreateTask = () => {
+const CreateTask = ({ onSaveFormData }: CreateTaskProps) => {
+  const [name, setName] = useState('');
   const [userId, setUserId] = useState('');
   const [title, setTitle] = useState('');
   const [dueDate, setDueDate] = useState('');
@@ -18,7 +23,10 @@ const CreateTask = () => {
   const [users, setUsers] = useState([]);
 
   const onChangeHandlerSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setUserId(e.target.value);
+    const userId = `${e.target[e.target.selectedIndex].dataset.id}`;
+
+    setName(e.target.value);
+    setUserId(userId);
   };
 
   const onChangeHandlerTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,7 +56,8 @@ const CreateTask = () => {
 
   const submitFormHandler = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const task = {
+    const taskObj = {
+      name: name,
       userId: userId,
       title: title,
       dueDate: dueDate,
@@ -56,13 +65,13 @@ const CreateTask = () => {
       notes: notes,
     };
 
+    onSaveFormData(taskObj);
+
     setUserId('');
     setTitle('');
     setDueDate('');
     setHours('');
     setNotes('');
-
-    console.log(task);
   };
 
   return (
@@ -82,7 +91,8 @@ const CreateTask = () => {
           {users.map((user) => (
             <option
               key={user.id}
-              value={`${user.id}`}
+              value={`${user.firstName} ${user.lastName}`}
+              data-id={`${user.id}`}
             >
               {user.firstName} {user.lastName}
             </option>

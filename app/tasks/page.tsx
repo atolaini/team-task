@@ -1,14 +1,27 @@
+'use client';
+import { useState } from 'react';
+
 import CreateTask from '@/components/task/createTask';
 
-import TaskContainer from '@/components/layout/taskContainer';
+import TaskContainer from '@/components/task/taskContainer';
 import SideTaskList from '@/components/task/sideTaskList';
 
 const TaskPage = () => {
+  const [task, setTask] = useState<{}[]>([]);
+
+  const saveTaskDataHandler = (newTaskData: {}) => {
+    const newTask = {
+      ...newTaskData,
+    };
+
+    setTask((prevState) => [...prevState, newTask]);
+  };
+
   return (
     <div>
       <TaskContainer>
-        <CreateTask />
-        <SideTaskList />
+        <CreateTask onSaveFormData={saveTaskDataHandler} />
+        <SideTaskList taskData={task} />
       </TaskContainer>
     </div>
   );
