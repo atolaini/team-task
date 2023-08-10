@@ -28,7 +28,7 @@ const GetAllUsers = () => {
     };
 
     response();
-  }, [users]);
+  }, []);
 
   console.log('this is data' + users);
 

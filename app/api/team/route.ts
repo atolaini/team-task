@@ -18,5 +18,7 @@ export const POST = async (req: NextRequest) => {
 export const GET = async () => {
   const users = await prisma.user.findMany();
 
+  revalidatePath('/team');
+
   return NextResponse.json(users);
 };
