@@ -5,6 +5,11 @@ import { createURL } from '@/utils/api';
 import Link from 'next/link';
 import UserCard from './userCard';
 
+interface UserTypes {
+  id: string
+  user: ;
+}
+
 const GetAllUsers = () => {
   const [users, setUsers] = useState([]);
 
@@ -24,13 +29,13 @@ const GetAllUsers = () => {
     };
 
     response();
-  }, []);
+  }, [users]);
 
   console.log('this is data' + users);
 
   return (
     <>
-      {users.map((user) => (
+      {users.map((user: UserTypes) => (
         <Link
           key={user.id}
           href={`/team/${user.id}`}
