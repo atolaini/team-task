@@ -2,10 +2,20 @@ import { NextResponse } from 'next/server';
 
 export const createURL = (path: string) => window.location.origin + path;
 
-export const createUser = async (name: {
+interface NameTypes {
   firstName: FormDataEntryValue;
   lastName: FormDataEntryValue;
-}) => {
+}
+
+interface TaskTypes {
+  title: string;
+  dueDate: string;
+  hours: number;
+  weekNumber: number;
+  userId: string;
+}
+
+export const createUser = async (name: NameTypes) => {
   const res = await fetch(
     new Request(createURL('/api/team'), {
       method: 'POST',
@@ -25,11 +35,17 @@ export const createUser = async (name: {
   }
 };
 
-export const createTask = async () => {
+export const createTask = async (task) => {
   const res = await fetch(
     new Request(createURL('/api/task'), {
       method: 'POST',
-      body: JSON.stringify({ title: 'title' }),
+      body: JSON.stringify({
+        title: task.title,
+        dueDate: task.title,
+        hours: task.hours,
+        weekNumber: task.weekNumber,
+        userId: task.userId,
+      }),
     })
   );
 

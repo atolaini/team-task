@@ -1,19 +1,17 @@
 import Card from './card';
 
+import { currentYear, yearWeek } from '@/utils/helpers';
+
 import classes from '@/styles/components/current-week.module.scss';
 
 const CurrentWeek = () => {
-  const currentDate: any = new Date();
-  const startDate: any = new Date(currentDate.getFullYear(), 0, 1);
-  const days = Math.floor((currentDate - startDate) / (24 * 60 * 60 * 1000));
-  const currentYear = currentDate.getFullYear();
-
-  const weekNumber = Math.ceil(days / 7);
+  const weekNumber = yearWeek();
+  const year = currentYear();
 
   return (
     <Card>
       <p className={classes.currentWeek}>
-        Week <span>{weekNumber}</span> of <span>{currentYear}</span>
+        Week <span>{weekNumber}</span> of <span>{year}</span>
       </p>
     </Card>
   );
