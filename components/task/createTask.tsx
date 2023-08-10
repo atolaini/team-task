@@ -43,8 +43,7 @@ const CreateTask = ({ onSaveFormData }: CreateTaskProps) => {
   };
 
   const onChangeHandlerHours = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const toNumber: number = Number(e.target.value);
-    setHours(toNumber);
+    setHours(e.target.value);
   };
 
   const onChangeHandlerNotes = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,14 +62,24 @@ const CreateTask = ({ onSaveFormData }: CreateTaskProps) => {
   const submitFormHandler = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const dueDateISO = new Date(dueDate).toISOString();
+    let dueDateISO;
+
+    if (dueDate) {
+      dueDateISO = new Date(dueDate)?.toISOString();
+    } else {
+      dueDateISO = null;
+    }
+
+    const numberHours = Number(hours);
+
+    console.log(typeof numberHours);
 
     const taskObj = {
       name: name,
       userId: userId,
       title: title,
       dueDate: dueDateISO,
-      hours: hours,
+      hours: numberHours,
       notes: notes,
       weekNumber: currentWeek,
     };
