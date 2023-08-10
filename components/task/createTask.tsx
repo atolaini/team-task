@@ -8,10 +8,13 @@ interface CreateTaskProps {
 import { useState, useEffect, useRef } from 'react';
 
 import { getUsers } from '@/utils/api';
+import { createTask } from '@/utils/api';
+import { yearWeek } from '@/utils/helpers';
 
 import Form from '../forms/form';
 import Input from '../forms/input';
 import Button from '../ui/button';
+import { type } from 'os';
 
 const CreateTask = ({ onSaveFormData }: CreateTaskProps) => {
   const [name, setName] = useState('');
@@ -21,6 +24,8 @@ const CreateTask = ({ onSaveFormData }: CreateTaskProps) => {
   const [hours, setHours] = useState('');
   const [notes, setNotes] = useState('');
   const [users, setUsers] = useState([]);
+
+  const currentWeek = yearWeek();
 
   const onChangeHandlerSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const userId = `${e.target[e.target.selectedIndex].dataset.id}`;
@@ -38,7 +43,8 @@ const CreateTask = ({ onSaveFormData }: CreateTaskProps) => {
   };
 
   const onChangeHandlerHours = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setHours(e.target.value);
+    const toNumber: number = Number(e.target.value);
+    setHours(toNumber);
   };
 
   const onChangeHandlerNotes = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,9 +69,11 @@ const CreateTask = ({ onSaveFormData }: CreateTaskProps) => {
       dueDate: dueDate,
       hours: hours,
       notes: notes,
+      weekNumber: currentWeek,
     };
 
     onSaveFormData(taskObj);
+    createTask(taskObj);
 
     setUserId('');
     setTitle('');

@@ -8,11 +8,12 @@ interface NameTypes {
 }
 
 interface TaskTypes {
-  title: string;
-  dueDate: string;
-  hours: number;
+  title: FormDataEntryValue;
+  dueDate: FormDataEntryValue;
+  hours: FormDataEntryValue;
   weekNumber: number;
-  userId: string;
+  userId: FormDataEntryValue;
+  notes: FormDataEntryValue;
 }
 
 export const createUser = async (name: NameTypes) => {
@@ -35,16 +36,18 @@ export const createUser = async (name: NameTypes) => {
   }
 };
 
-export const createTask = async (task) => {
+export const createTask = async (task: TaskTypes) => {
+  console.log('from api' + JSON.stringify(task));
+
   const res = await fetch(
     new Request(createURL('/api/task'), {
       method: 'POST',
       body: JSON.stringify({
         title: task.title,
-        dueDate: task.title,
         hours: task.hours,
         weekNumber: task.weekNumber,
         userId: task.userId,
+        notes: task.notes,
       }),
     })
   );

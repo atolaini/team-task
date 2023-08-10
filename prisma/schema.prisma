@@ -31,10 +31,10 @@ model Task {
   user   User   @relation(fields: [userId], references: [id])
 
   title      String
-  dueDate    DateTime?
+  dueDate    String?
   hours      Int
-  notes      String?   @db.Text
-  weekNumber Int
+  notes      String? @db.Text
+  weekNumber String
 
   @@unique([userId, id])
 }
