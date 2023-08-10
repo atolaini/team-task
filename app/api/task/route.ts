@@ -4,8 +4,6 @@ import { NextRequest, NextResponse } from 'next/server';
 export const POST = async (req: NextRequest) => {
   const data = await req.json();
 
-  console.log('this is data' + data);
-
   const task = await prisma.task.create({
     data: {
       title: data.title,

@@ -36,6 +36,19 @@ export const createUser = async (name: NameTypes) => {
   }
 };
 
+export const getUsers = async () => {
+  const users = await fetch(
+    new Request(createURL('/api/team/'), {
+      method: 'GET',
+    })
+  );
+
+  if (users.ok) {
+    const data = await users.json();
+    return data;
+  }
+};
+
 export const createTask = async (task: TaskTypes) => {
   console.log('from api' + JSON.stringify(task));
 
@@ -58,18 +71,5 @@ export const createTask = async (task: TaskTypes) => {
     return data.data;
   } else {
     throw new Error('something went wrong');
-  }
-};
-
-export const getUsers = async () => {
-  const users = await fetch(
-    new Request(createURL('/api/team/'), {
-      method: 'GET',
-    })
-  );
-
-  if (users.ok) {
-    const data = await users.json();
-    return data;
   }
 };
