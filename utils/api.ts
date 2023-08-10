@@ -9,7 +9,7 @@ interface NameTypes {
 
 interface TaskTypes {
   title: FormDataEntryValue;
-  dueDate: FormDataEntryValue;
+  dueDate: Date;
   hours: FormDataEntryValue;
   weekNumber: number;
   userId: FormDataEntryValue;
@@ -48,6 +48,7 @@ export const createTask = async (task: TaskTypes) => {
         weekNumber: task.weekNumber,
         userId: task.userId,
         notes: task.notes,
+        dueDate: task.dueDate,
       }),
     })
   );

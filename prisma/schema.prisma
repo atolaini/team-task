@@ -31,9 +31,9 @@ model Task {
   user   User   @relation(fields: [userId], references: [id])
 
   title      String
-  dueDate    String?
+  dueDate    DateTime?
   hours      Int
-  notes      String? @db.Text
+  notes      String?   @db.Text
   weekNumber String
 
   @@unique([userId, id])

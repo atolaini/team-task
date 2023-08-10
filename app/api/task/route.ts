@@ -12,6 +12,7 @@ export const POST = async (req: NextRequest) => {
       hours: data.hours,
       weekNumber: data.weekNumber,
       notes: data.notes,
+      dueDate: data.dueDate,
       user: {
         connect: {
           id: data.userId,

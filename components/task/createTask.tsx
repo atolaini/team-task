@@ -62,11 +62,14 @@ const CreateTask = ({ onSaveFormData }: CreateTaskProps) => {
 
   const submitFormHandler = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const dueDateISO = new Date(dueDate).toISOString();
+
     const taskObj = {
       name: name,
       userId: userId,
       title: title,
-      dueDate: dueDate,
+      dueDate: dueDateISO,
       hours: hours,
       notes: notes,
       weekNumber: currentWeek,
