@@ -7,6 +7,7 @@
   &.required {
     label {
       &::after {
+        content: '*';
         display: block;
       }
     }

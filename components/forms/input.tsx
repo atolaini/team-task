@@ -6,11 +6,11 @@ interface InputProps {
   label: string;
   type?: string;
   inputType?: string;
-  isRequired: boolean;
+  isRequired?: boolean;
   id: string;
   name: string;
   value?: string;
-  onChangeHandler?: (event: React.ChangeEvent) => void;
+  onChangeHandler?: (event: React.ChangeEvent<any>) => void;
 }
 
 const Input = ({

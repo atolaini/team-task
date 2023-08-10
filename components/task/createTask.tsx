@@ -1,11 +1,6 @@
 'use client';
 import classes from '@/styles/forms/input.module.scss';
-
-interface CreateTaskProps {
-  onSaveFormData: (taskObj: {}) => void;
-}
-
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 import { getUsers } from '@/utils/api';
 import { createTask } from '@/utils/api';
@@ -14,7 +9,24 @@ import { yearWeek } from '@/utils/helpers';
 import Form from '../forms/form';
 import Input from '../forms/input';
 import Button from '../ui/button';
-import { type } from 'os';
+
+interface CreateTaskProps {
+  onSaveFormData: (taskObj: {
+    name: string;
+    userId: string;
+    title: string;
+    dueDate?: string;
+    hours: number;
+    notes: string;
+    weekNumber: string;
+  }) => void;
+}
+
+interface UserTypes {
+  id: string;
+  firstName: string;
+  lastName: string;
+}
 
 const CreateTask = ({ onSaveFormData }: CreateTaskProps) => {
   const [name, setName] = useState('');
@@ -27,27 +39,29 @@ const CreateTask = ({ onSaveFormData }: CreateTaskProps) => {
 
   const currentWeek = yearWeek();
 
-  const onChangeHandlerSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const userId = `${e.target[e.target.selectedIndex].dataset.id}`;
+  const onChangeHandlerSelect = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const userId = `${event.target[event.target.selectedIndex].dataset.id}`;
 
-    setName(e.target.value);
+    setName(event.target.value);
     setUserId(userId);
   };
 
-  const onChangeHandlerTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
+  const onChangeHandlerTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(event.target.value);
   };
 
-  const onChangeHandlerDate = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDueDate(e.target.value);
+  const onChangeHandlerDate = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDueDate(event.target.value);
   };
 
-  const onChangeHandlerHours = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setHours(e.target.value);
+  const onChangeHandlerHours = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setHours(event.target.value);
   };
 
-  const onChangeHandlerNotes = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNotes(e.target.value);
+  const onChangeHandlerNotes = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setNotes(event.target.value);
   };
 
   useEffect(() => {
@@ -59,8 +73,8 @@ const CreateTask = ({ onSaveFormData }: CreateTaskProps) => {
     response();
   }, []);
 
-  const submitFormHandler = (e: React.SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const submitFormHandler = (event: React.SyntheticEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
     let dueDateISO;
 
@@ -108,7 +122,7 @@ const CreateTask = ({ onSaveFormData }: CreateTaskProps) => {
           onChange={onChangeHandlerSelect}
         >
           <option>Select user</option>
-          {users.map((user) => (
+          {users.map((user: UserTypes) => (
             <option
               key={user.id}
               value={`${user.firstName} ${user.lastName}`}
@@ -121,6 +135,7 @@ const CreateTask = ({ onSaveFormData }: CreateTaskProps) => {
       </div>
       <Input
         label='Task title'
+        isRequired={true}
         id='task title'
         name='title'
         onChangeHandler={onChangeHandlerTitle}
