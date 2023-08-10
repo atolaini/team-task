@@ -6,8 +6,7 @@ import Link from 'next/link';
 import UserCard from './userCard';
 
 interface UserTypes {
-  id: string
-  user: ;
+  id: string;
 }
 
 const GetAllUsers = () => {
