@@ -2,8 +2,6 @@
   height: 100%;
   position: relative;
   padding-right: 2rem;
-  position: sticky;
-  top: 2rem;
 
   &::before {
     content: '';
@@ -20,6 +18,8 @@
     display: flex;
     flex-flow: column;
     align-items: center;
+    position: sticky;
+    top: 2rem;
   }
 
   .linkContainer {
@@ -30,6 +30,7 @@
     justify-items: center;
     text-decoration: none;
     margin-bottom: 4rem;
+    font-weight: 200;
 
     &:hover {
       svg {
