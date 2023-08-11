@@ -1,4 +1,4 @@
-import { prisma } from '@/utils/db';
+//import { prisma } from '@/utils/db';
 
 export const yearWeek = () => {
   const currentDate: any = new Date();
@@ -14,17 +14,4 @@ export const currentYear = () => {
   const currentYear = currentDate.getFullYear();
 
   return currentYear;
-};
-
-export const getUserTasks = async (id: string) => {
-  const userTasks = await prisma.user.findUnique({
-    where: {
-      id: id,
-    },
-    include: {
-      tasks: true,
-    },
-  });
-
-  return userTasks;
 };

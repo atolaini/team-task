@@ -1,6 +1,19 @@
-import { getUserTasks } from '@/utils/helpers';
+import { prisma } from '@/utils/db';
 import FlexContainer from '@/components/layout/flexContainer';
 import Card from '@/components/ui/card';
+
+const getUserTasks = async (id: string) => {
+  const userTasks = await prisma.user.findUnique({
+    where: {
+      id: id,
+    },
+    include: {
+      tasks: true,
+    },
+  });
+
+  return userTasks;
+};
 
 const UserProfile = async ({ params }) => {
   const id = params.id;

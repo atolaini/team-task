@@ -1,6 +1,3 @@
-import { NextResponse } from 'next/server';
-import { threadId } from 'worker_threads';
-
 export const createURL = (path: string) => window.location.origin + path;
 
 interface NameTypes {
