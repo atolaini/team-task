@@ -10,8 +10,8 @@ interface NameTypes {
 interface TaskTypes {
   title: FormDataEntryValue;
   dueDate: Date;
-  hours: FormDataEntryValue;
-  weekNumber: number;
+  hours: number;
+  weekNumber: string;
   userId: FormDataEntryValue;
   notes: FormDataEntryValue;
 }

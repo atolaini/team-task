@@ -2,6 +2,8 @@
   height: 100%;
   position: relative;
   padding-right: 2rem;
+  position: sticky;
+  top: 2rem;
 
   &::before {
     content: '';

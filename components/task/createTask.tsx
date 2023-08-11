@@ -37,7 +37,7 @@ const CreateTask = ({ onSaveFormData }: CreateTaskProps) => {
   const [notes, setNotes] = useState('');
   const [users, setUsers] = useState([]);
 
-  const currentWeek = yearWeek();
+  const currentWeek = yearWeek().toString();
 
   const onChangeHandlerSelect = (
     event: React.ChangeEvent<HTMLSelectElement>
