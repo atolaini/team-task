@@ -8,12 +8,12 @@ interface NameTypes {
 }
 
 interface TaskTypes {
-  title: FormDataEntryValue;
+  title: string;
   dueDate: Date;
   hours: number;
   weekNumber: string;
-  userId: FormDataEntryValue;
-  notes: FormDataEntryValue;
+  userId: string;
+  notes: string;
 }
 
 export const createUser = async (name: NameTypes) => {
@@ -50,24 +50,18 @@ export const getUsers = async () => {
 };
 
 export const createTask = async (task: TaskTypes) => {
-  console.log('from api' + JSON.stringify(task));
+  console.log('from api task' + JSON.stringify(task));
 
   const res = await fetch(
     new Request(createURL('/api/task'), {
       method: 'POST',
-      body: JSON.stringify({
-        title: task.title,
-        hours: task.hours,
-        weekNumber: task.weekNumber,
-        userId: task.userId,
-        notes: task.notes,
-        dueDate: task.dueDate,
-      }),
+      body: JSON.stringify({ task }),
     })
   );
 
   if (res.ok) {
     const data = await res.json();
+    console.log('from api task' + JSON.stringify(data.data));
     return data.data;
   } else {
     throw new Error('something went wrong');

@@ -3,19 +3,20 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export const POST = async (req: NextRequest) => {
   const data = await req.json();
+  const { title, hours, weekNumber, notes, dueDate, userId } = data.task;
 
   console.log('this is from route' + JSON.stringify(data));
 
   const task = await prisma.task.create({
     data: {
-      title: data.title,
-      hours: data.hours,
-      weekNumber: data.weekNumber,
-      notes: data.notes,
-      dueDate: data.dueDate,
+      title: title,
+      hours: hours,
+      weekNumber: weekNumber,
+      notes: notes,
+      dueDate: dueDate,
       user: {
         connect: {
-          id: data.userId,
+          id: userId,
         },
       },
     },
