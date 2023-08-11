@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { threadId } from 'worker_threads';
 
 export const createURL = (path: string) => window.location.origin + path;
 
@@ -50,8 +51,6 @@ export const getUsers = async () => {
 };
 
 export const createTask = async (task: TaskTypes) => {
-  console.log('from api task' + JSON.stringify(task));
-
   const res = await fetch(
     new Request(createURL('/api/task'), {
       method: 'POST',
