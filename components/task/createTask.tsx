@@ -73,9 +73,7 @@ const CreateTask = ({ onSaveFormData }: CreateTaskProps) => {
     response();
   }, []);
 
-  const submitFormHandler = async (
-    event: React.SyntheticEvent<HTMLFormElement>
-  ) => {
+  const submitFormHandler = (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     let dueDateISO;
@@ -101,7 +99,7 @@ const CreateTask = ({ onSaveFormData }: CreateTaskProps) => {
     };
 
     onSaveFormData(taskObj);
-    await createTask(taskObj);
+    createTask(taskObj);
 
     setUserId('');
     setTitle('');

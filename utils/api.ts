@@ -1,4 +1,5 @@
 export const createURL = (path: string) => window.location.origin + path;
+const url = process.env.PUBLIC_API_URL;
 
 interface NameTypes {
   firstName: FormDataEntryValue;
@@ -36,13 +37,15 @@ export const createUser = async (name: NameTypes) => {
 
 export const getUsers = async () => {
   const users = await fetch(
-    new Request(createURL('/api/team/'), {
+    new Request(`${url}/team`, {
+      cache: 'no-store',
       method: 'GET',
     })
   );
 
   if (users.ok) {
     const data = await users.json();
+    console.log('api ', data);
     return data;
   }
 };

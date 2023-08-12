@@ -1,6 +1,17 @@
 import { prisma } from '@/utils/db';
-import { NextRequest, NextResponse } from 'next/server';
+import revalidate from '@/utils/revalidate';
 import { revalidatePath } from 'next/cache';
+import { NextRequest, NextResponse } from 'next/server';
+
+export const GET = async () => {
+  const users = await prisma.user.findMany();
+
+  console.log('server ', users);
+
+  revalidatePath('http://localhost:3000/team');
+
+  return NextResponse.json(users);
+};
 
 export const POST = async (req: NextRequest) => {
   const data = await req.json();
@@ -13,12 +24,4 @@ export const POST = async (req: NextRequest) => {
   });
 
   return NextResponse.json({ data: user });
-};
-
-export const GET = async () => {
-  const users = await prisma.user.findMany();
-
-  revalidatePath('/team');
-
-  return NextResponse.json(users);
 };
