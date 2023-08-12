@@ -92,7 +92,6 @@ const CreateTask = ({ onSaveFormData }: CreateTaskProps) => {
       name: name,
       userId: userId,
       title: title,
-      dueDate: dueDateISO,
       hours: numberHours,
       notes: notes,
       weekNumber: currentWeek,
