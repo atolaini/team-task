@@ -1,5 +1,7 @@
 export const createURL = (path: string) => window.location.origin + path;
-const url = process.env.PUBLIC_API_URL;
+const url = process.env.NEXT_PUBLIC_API_URL;
+
+console.log('THIS IS URL', url);
 
 interface NameTypes {
   firstName: FormDataEntryValue;

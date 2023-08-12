@@ -1,14 +1,10 @@
 import { prisma } from '@/utils/db';
-import revalidate from '@/utils/revalidate';
-import { revalidatePath } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 
 export const GET = async () => {
   const users = await prisma.user.findMany();
 
   console.log('server ', users);
-
-  revalidatePath('http://localhost:3000/team');
 
   return NextResponse.json(users);
 };
