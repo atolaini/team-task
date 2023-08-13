@@ -1,10 +1,12 @@
+'use client';
+
 import Link from 'next/link';
 
 import FlexContainer from '@/components/layout/flexContainer';
 import Button from '@/components/ui/button';
 import GetAllUsers from '@/components/createUser/getAllUsers';
 
-const Team = async () => {
+const Team = () => {
   return (
     <>
       <div>

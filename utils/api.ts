@@ -1,3 +1,4 @@
+import { redirect } from 'next/navigation';
 export const createURL = (path: string) => window.location.origin + path;
 const url = process.env.NEXT_PUBLIC_API_URL;
 
@@ -19,7 +20,7 @@ interface TaskTypes {
 
 export const createUser = async (name: NameTypes) => {
   const res = await fetch(
-    new Request(createURL('/api/team'), {
+    new Request(`${url}/team/add-team-member`, {
       method: 'POST',
       body: JSON.stringify({
         firstName: name.firstName,
@@ -30,7 +31,6 @@ export const createUser = async (name: NameTypes) => {
 
   if (res.ok) {
     const data = await res.json();
-
     return data.data;
   } else {
     throw new Error(`Something went wrong ${Error}`);
