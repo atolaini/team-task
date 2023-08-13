@@ -20,7 +20,7 @@ const Team = async () => {
           />
         </Link>
         <FlexContainer flexFlow='col'>
-          {/* <GetAllUsers users={users} /> */}
+          <GetAllUsers users={users} />
         </FlexContainer>
       </div>
     </>

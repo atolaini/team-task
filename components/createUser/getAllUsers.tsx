@@ -1,7 +1,8 @@
 'use client';
 
 // import { useEffect, useState } from 'react';
-// import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 // import { getUsers } from '@/utils/api';
 
@@ -15,21 +16,6 @@ interface UserTypes {
 }
 
 const GetAllUsers = ({ users }: { users: User[] }) => {
-  // const [users, setUsers] = useState([]);
-  // const router = useRouter();
-
-  // console.log('did mount');
-
-  // useEffect(() => {
-  //   const response = async () => {
-  //     const users = await getUsers();
-
-  //     setUsers(users);
-  //     router.refresh();
-  //   };
-  //   response();
-  // }, [router]);
-
   return (
     <>
       {users.map((user: UserTypes) => (
