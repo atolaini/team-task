@@ -8,4 +8,8 @@ module.exports = {
   experimental: {
     serverActions: true,
   },
+
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')],
+  },
 };

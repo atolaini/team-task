@@ -1,33 +1,38 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+// import { useEffect, useState } from 'react';
+// import { useRouter } from 'next/navigation';
 
-import { getUsers } from '@/utils/api';
-import { User } from '@/utils/interfaces';
+// import { getUsers } from '@/utils/api';
 
 import Link from 'next/link';
 import UserCard from './userCard';
 
-const GetAllUsers = () => {
-  const [users, setUsers] = useState<User[]>([]);
-  const router = useRouter();
+interface UserTypes {
+  id: string;
+  firstName: string;
+  lastName: string;
+}
 
-  console.log('did mount');
+const GetAllUsers = ({ users }: { users: User[] }) => {
+  // const [users, setUsers] = useState([]);
+  // const router = useRouter();
 
-  useEffect(() => {
-    const response = async () => {
-      const users = await getUsers();
+  // console.log('did mount');
 
-      setUsers(users);
-      router.refresh();
-    };
-    response();
-  }, [router]);
+  // useEffect(() => {
+  //   const response = async () => {
+  //     const users = await getUsers();
+
+  //     setUsers(users);
+  //     router.refresh();
+  //   };
+  //   response();
+  // }, [router]);
 
   return (
     <>
-      {users.map((user: User) => (
+      {users.map((user: UserTypes) => (
         <Link
           key={user.id}
           href={`/team/${user.id}`}

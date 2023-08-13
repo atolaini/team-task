@@ -1,8 +1,10 @@
 import classes from '@/styles/layout/taskContainer.module.scss';
 
-import { Generics } from '@/utils/interfaces';
+interface TaskContainerProps {
+  children: [React.ReactNode, React.ReactNode];
+}
 
-const TaskContainer = ({ children }) => {
+const TaskContainer = ({ children }: TaskContainerProps) => {
   const [left, right] = children;
 
   return (

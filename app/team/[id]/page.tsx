@@ -2,6 +2,10 @@ import { prisma } from '@/utils/db';
 import FlexContainer from '@/components/layout/flexContainer';
 import Card from '@/components/ui/card';
 
+interface PageParams {
+  params: { id: string };
+}
+
 const getUserTasks = async (id: string) => {
   const userTasks = await prisma.user.findUnique({
     where: {
@@ -15,7 +19,7 @@ const getUserTasks = async (id: string) => {
   return userTasks;
 };
 
-const UserProfile = async ({ params }) => {
+const UserProfile = async ({ params }: PageParams) => {
   const id = params.id;
   const userTasks = await getUserTasks(id);
   const allHours: number[] = [];

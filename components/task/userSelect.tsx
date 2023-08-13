@@ -1,9 +1,11 @@
 'use client';
 
+import { User } from '@/utils/interfaces';
+
 import classes from '@/styles/forms/input.module.scss';
 
 interface UserSelectProps {
-  users: [];
+  users: User[];
 }
 
 const UserSelect = ({ users }: UserSelectProps) => {

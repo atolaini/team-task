@@ -1,8 +1,5 @@
-import { redirect } from 'next/navigation';
 export const createURL = (path: string) => window.location.origin + path;
 const url = process.env.NEXT_PUBLIC_API_URL;
-
-console.log('THIS IS URL', url);
 
 interface NameTypes {
   firstName: FormDataEntryValue;
@@ -40,20 +37,20 @@ export const createUser = async (name: NameTypes) => {
 export const getUsers = async () => {
   const users = await fetch(
     new Request(`${url}/team`, {
+      cache: 'no-store',
       method: 'GET',
     })
   );
 
   if (users.ok) {
     const data = await users.json();
-    console.log('api ', data);
     return data;
   }
 };
 
 export const createTask = async (task: TaskTypes) => {
   const res = await fetch(
-    new Request(createURL('/api/task'), {
+    new Request(`${url}/task`, {
       method: 'POST',
       body: JSON.stringify({ task }),
     })

@@ -1,12 +1,15 @@
-'use client';
-
 import Link from 'next/link';
+
+import { getUsers } from '@/utils/api';
 
 import FlexContainer from '@/components/layout/flexContainer';
 import Button from '@/components/ui/button';
 import GetAllUsers from '@/components/createUser/getAllUsers';
 
-const Team = () => {
+const Team = async () => {
+  const userData: Promise<User[]> = getUsers();
+  const users = await userData;
+
   return (
     <>
       <div>
@@ -17,7 +20,7 @@ const Team = () => {
           />
         </Link>
         <FlexContainer flexFlow='col'>
-          <GetAllUsers />
+          <GetAllUsers users={users} />
         </FlexContainer>
       </div>
     </>
