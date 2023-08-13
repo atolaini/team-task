@@ -8,9 +8,9 @@ import SideTaskList from '@/components/task/sideTaskList';
 import { UserTask } from '@/utils/interfaces';
 
 const TaskPage = () => {
-  const [task, setTask] = useState<{}[]>([]);
+  const [task, setTask] = useState<UserTask[]>([]);
 
-  const saveTaskDataHandler = (newTaskData: {}) => {
+  const saveTaskDataHandler = (newTaskData: UserTask) => {
     const newTask = {
       ...newTaskData,
     };

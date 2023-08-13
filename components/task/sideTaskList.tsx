@@ -1,8 +1,10 @@
 import classes from '@/styles/layout/taskContainer.module.scss';
 import { v4 as uuid } from 'uuid';
 
+import { UserTask } from '@/utils/interfaces';
+
 interface SidetaskListProps {
-  taskData: [];
+  taskData: UserTask[];
 }
 
 interface TaskValues {
