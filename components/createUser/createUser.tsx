@@ -19,6 +19,7 @@ const CreateUser = () => {
     };
 
     createUser(nameObject);
+
     router.push('/team');
   };
 

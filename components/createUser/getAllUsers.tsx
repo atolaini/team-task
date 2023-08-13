@@ -1,3 +1,8 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+
 import { getUsers } from '@/utils/api';
 
 import Link from 'next/link';
@@ -7,9 +12,21 @@ interface UserTypes {
   id: string;
 }
 
-const GetAllUsers = async () => {
-  const data: Promise<User[]> = getUsers();
-  const users = await data;
+const GetAllUsers = () => {
+  const [users, setUsers] = useState([]);
+  const router = useRouter();
+
+  console.log('did mount');
+
+  useEffect(() => {
+    const response = async () => {
+      const users = await getUsers();
+
+      setUsers(users);
+      router.refresh();
+    };
+    response();
+  }, [router]);
 
   return (
     <>

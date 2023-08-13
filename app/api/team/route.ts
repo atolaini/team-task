@@ -7,18 +7,3 @@ export const GET = async (request: NextRequest) => {
 
   return NextResponse.json(users);
 };
-
-export const POST = async (req: NextRequest) => {
-  const data = await req.json();
-
-  const user = await prisma.user.create({
-    data: {
-      firstName: data.firstName,
-      lastName: data.lastName,
-    },
-  });
-
-  revalidatePath('http://localhost:3000/team');
-
-  return NextResponse.json({ data: user });
-};
