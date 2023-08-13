@@ -1,13 +1,29 @@
+'use client';
+
 import Link from 'next/link';
 
 import { getUsers } from '@/utils/api';
+import { User } from '@/utils/interfaces';
+import { useState, useEffect } from 'react';
 
 import FlexContainer from '@/components/layout/flexContainer';
 import Button from '@/components/ui/button';
-import { User } from '@/utils/interfaces';
+import UserCard from '@/components/createUser/userCard';
+import GetAllUsers from '@/components/createUser/getAllUsers';
 
-const Team = async () => {
-  const users: User[] = await getUsers();
+export const dynamic = 'force-dynamic';
+
+const Team = () => {
+  const [users, setUsers] = useState<User[]>([]);
+
+  useEffect(() => {
+    const response = async () => {
+      const userData: User[] = await getUsers();
+      setUsers(userData);
+    };
+
+    response();
+  }, []);
 
   return (
     <>
@@ -19,9 +35,7 @@ const Team = async () => {
           />
         </Link>
         <FlexContainer flexFlow='col'>
-          {users?.map((user) => (
-            <div key={user.id}>user</div>
-          ))}
+          <GetAllUsers users={users} />
         </FlexContainer>
       </div>
     </>

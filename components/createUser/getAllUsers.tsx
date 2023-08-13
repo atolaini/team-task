@@ -1,11 +1,3 @@
-'use client';
-
-// import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
-
-// import { getUsers } from '@/utils/api';
-
 import Link from 'next/link';
 import UserCard from './userCard';
 
@@ -15,7 +7,7 @@ interface UserTypes {
   lastName: string;
 }
 
-const GetAllUsers = ({ users }: { users: User[] }) => {
+const GetAllUsers = ({ users }: { users: UserTypes[] }) => {
   return (
     <>
       {users.map((user: UserTypes) => (

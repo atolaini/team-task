@@ -1,6 +1,6 @@
 export const createURL = (path: string) => window.location.origin + path;
 const url = process.env.NEXT_PUBLIC_API_URL;
-
+import { redirect } from 'next/navigation';
 interface NameTypes {
   firstName: FormDataEntryValue;
   lastName: FormDataEntryValue;
@@ -17,7 +17,7 @@ interface TaskTypes {
 
 export const createUser = async (name: NameTypes) => {
   const res = await fetch(
-    new Request(`${url}/team/add-team-member`, {
+    new Request(`${url}/add-team-member`, {
       method: 'POST',
       body: JSON.stringify({
         firstName: name.firstName,
@@ -37,8 +37,11 @@ export const createUser = async (name: NameTypes) => {
 export const getUsers = async () => {
   const users = await fetch(
     new Request(`${url}/team`, {
-      cache: 'no-store',
       method: 'GET',
+      cache: 'no-store',
+      next: {
+        revalidate: 0,
+      },
     })
   );
 
