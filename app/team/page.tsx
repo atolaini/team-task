@@ -4,11 +4,10 @@ import { getUsers } from '@/utils/api';
 
 import FlexContainer from '@/components/layout/flexContainer';
 import Button from '@/components/ui/button';
-import GetAllUsers from '@/components/createUser/getAllUsers';
+import { User } from '@/utils/interfaces';
 
 const Team = async () => {
-  const userData: Promise<User[]> = getUsers();
-  const users = await userData;
+  const users: User[] = await getUsers();
 
   return (
     <>
@@ -20,7 +19,9 @@ const Team = async () => {
           />
         </Link>
         <FlexContainer flexFlow='col'>
-          <GetAllUsers users={users} />
+          {users?.map((user) => (
+            <div key={user.id}>user</div>
+          ))}
         </FlexContainer>
       </div>
     </>
