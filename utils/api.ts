@@ -40,7 +40,6 @@ export const createUser = async (name: NameTypes) => {
 export const getUsers = async () => {
   const users = await fetch(
     new Request(`${url}/team`, {
-      cache: 'no-store',
       method: 'GET',
     })
   );
