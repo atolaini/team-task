@@ -5,6 +5,7 @@ import CreateTask from '@/components/task/createTask';
 
 import TaskContainer from '@/components/task/taskContainer';
 import SideTaskList from '@/components/task/sideTaskList';
+import { UserTask } from '@/utils/interfaces';
 
 const TaskPage = () => {
   const [task, setTask] = useState<{}[]>([]);

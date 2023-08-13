@@ -2,6 +2,8 @@
 import classes from '@/styles/forms/input.module.scss';
 import { useState, useEffect } from 'react';
 
+import { User, UserTask } from '@/utils/interfaces';
+
 import { getUsers } from '@/utils/api';
 import { createTask } from '@/utils/api';
 import { yearWeek } from '@/utils/helpers';
@@ -20,12 +22,6 @@ interface CreateTaskProps {
     notes: string;
     weekNumber: string;
   }) => void;
-}
-
-interface UserTypes {
-  id: string;
-  firstName: string;
-  lastName: string;
 }
 
 const CreateTask = ({ onSaveFormData }: CreateTaskProps) => {
@@ -88,7 +84,7 @@ const CreateTask = ({ onSaveFormData }: CreateTaskProps) => {
 
     console.log(typeof numberHours);
 
-    const taskObj = {
+    const taskObj: UserTask = {
       name: name,
       userId: userId,
       title: title,
@@ -121,7 +117,7 @@ const CreateTask = ({ onSaveFormData }: CreateTaskProps) => {
           onChange={onChangeHandlerSelect}
         >
           <option>Select user</option>
-          {users.map((user: UserTypes) => (
+          {users.map((user: User) => (
             <option
               key={user.id}
               value={`${user.firstName} ${user.lastName}`}

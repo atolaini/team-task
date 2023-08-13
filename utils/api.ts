@@ -11,7 +11,7 @@ interface NameTypes {
 
 interface TaskTypes {
   title: string;
-  dueDate: Date;
+  dueDate?: Date;
   hours: number;
   weekNumber: string;
   userId: string;

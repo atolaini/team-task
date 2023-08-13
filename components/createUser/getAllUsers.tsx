@@ -4,16 +4,13 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { getUsers } from '@/utils/api';
+import { User } from '@/utils/interfaces';
 
 import Link from 'next/link';
 import UserCard from './userCard';
 
-interface UserTypes {
-  id: string;
-}
-
 const GetAllUsers = () => {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<User[]>([]);
   const router = useRouter();
 
   console.log('did mount');
@@ -30,7 +27,7 @@ const GetAllUsers = () => {
 
   return (
     <>
-      {users.map((user: UserTypes) => (
+      {users.map((user: User) => (
         <Link
           key={user.id}
           href={`/team/${user.id}`}
