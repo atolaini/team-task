@@ -15,41 +15,41 @@ interface TaskTypes {
   notes: string;
 }
 
-export const createUser = async (name: NameTypes) => {
-  const res = await fetch(
-    new Request(`${url}/add-team-member`, {
-      method: 'POST',
-      body: JSON.stringify({
-        firstName: name.firstName,
-        lastName: name.lastName,
-      }),
-    })
-  );
+// export const createUser = async (name: NameTypes) => {
+//   const res = await fetch(
+//     new Request(`${url}/add-team-member`, {
+//       method: 'POST',
+//       body: JSON.stringify({
+//         firstName: name.firstName,
+//         lastName: name.lastName,
+//       }),
+//     })
+//   );
 
-  if (res.ok) {
-    const data = await res.json();
-    return data.data;
-  } else {
-    throw new Error(`Something went wrong ${Error}`);
-  }
-};
+//   if (res.ok) {
+//     const data = await res.json();
+//     return data.data;
+//   } else {
+//     throw new Error(`Something went wrong ${Error}`);
+//   }
+// };
 
-export const getUsers = async () => {
-  const users = await fetch(
-    new Request(`${url}/team`, {
-      method: 'GET',
-      cache: 'no-store',
-      next: {
-        revalidate: 0,
-      },
-    })
-  );
+// export const getUsers = async () => {
+//   const users = await fetch(
+//     new Request(`${url}/team`, {
+//       method: 'GET',
+//       cache: 'no-store',
+//       next: {
+//         revalidate: 0,
+//       },
+//     })
+//   );
 
-  if (users.ok) {
-    const data = await users.json();
-    return data;
-  }
-};
+//   if (users.ok) {
+//     const data = await users.json();
+//     return data;
+//   }
+// };
 
 export const createTask = async (task: TaskTypes) => {
   const res = await fetch(

@@ -1,6 +1,8 @@
 'use client';
-import { createUser } from '@/utils/api';
+
 import { useRouter } from 'next/navigation';
+
+import { createUser } from '@/utils/actions/users.actions';
 
 import FlexContainer from '../layout/flexContainer';
 import Button from '../ui/button';
@@ -14,12 +16,11 @@ const CreateUser = () => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const nameObject = {
-      firstName: formData.get('first name') ?? '',
-      lastName: formData.get('last name') ?? '',
+      firstName: `${formData.get('first name') ?? ''}`,
+      lastName: `${formData.get('last name') ?? ''}`,
     };
 
     createUser(nameObject);
-
     router.push('/team');
   };
 
