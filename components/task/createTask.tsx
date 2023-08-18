@@ -3,25 +3,35 @@ import classes from '@/styles/forms/input.module.scss';
 import { useState, useEffect } from 'react';
 
 import { User, UserTask } from '@/utils/interfaces';
-import { yearWeek } from '@/utils/helpers';
-import { createTask } from '@/utils/actions/tasks.actions';
-import { getUsers } from '@/utils/actions/users.actions';
 
-import Form from '../forms/form';
+import { getUsers } from '@/utils/api';
+import { createTask } from '@/utils/api';
+import { yearWeek } from '@/utils/helpers';
+
+import Form from '@/components/forms/form';
 import Input from '../forms/input';
 import Button from '../ui/button';
 
 interface CreateTaskProps {
-  allUsers?: User[];
+  onSaveFormData: (taskObj: {
+    name: string;
+    userId: string;
+    title: string;
+    dueDate?: string;
+    hours: number;
+    notes: string;
+    weekNumber: string;
+  }) => void;
 }
 
-const CreateTask = ({ allUsers }: CreateTaskProps) => {
+const CreateTask = ({ onSaveFormData }: CreateTaskProps) => {
   const [name, setName] = useState('');
   const [userId, setUserId] = useState('');
   const [title, setTitle] = useState('');
   const [dueDate, setDueDate] = useState('');
   const [hours, setHours] = useState('');
   const [notes, setNotes] = useState('');
+  const [users, setUsers] = useState([]);
 
   const currentWeek = yearWeek().toString();
 
@@ -50,6 +60,15 @@ const CreateTask = ({ allUsers }: CreateTaskProps) => {
     setNotes(event.target.value);
   };
 
+  useEffect(() => {
+    const response = async () => {
+      const users = await getUsers();
+
+      setUsers(users);
+    };
+    response();
+  }, []);
+
   const submitFormHandler = (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -74,6 +93,7 @@ const CreateTask = ({ allUsers }: CreateTaskProps) => {
       weekNumber: currentWeek,
     };
 
+    onSaveFormData(taskObj);
     createTask(taskObj);
 
     setUserId('');
@@ -97,7 +117,7 @@ const CreateTask = ({ allUsers }: CreateTaskProps) => {
           onChange={onChangeHandlerSelect}
         >
           <option>Select user</option>
-          {allUsers?.map((user: User) => (
+          {users.map((user: User) => (
             <option
               key={user.id}
               value={`${user.firstName} ${user.lastName}`}

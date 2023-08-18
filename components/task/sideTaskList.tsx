@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import classes from '@/styles/layout/taskContainer.module.scss';
+import classes from '@/styles/task/sideTaskList.module.scss';
 import { v4 as uuid } from 'uuid';
 
 import { User } from '@/utils/interfaces';
