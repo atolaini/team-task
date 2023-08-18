@@ -2,10 +2,12 @@
 
 import { prisma } from '@/utils/db';
 import { UserTask } from '@/utils/interfaces';
+import { revalidatePath } from 'next/cache';
+import { headers } from 'next/headers';
 
 interface Task {
-  id?: string;
-  path?: string;
+  id?: string | undefined;
+  path?: any;
 }
 
 export const createTask = async (task: UserTask) => {
@@ -26,24 +28,16 @@ export const createTask = async (task: UserTask) => {
         },
       },
     });
+    revalidatePath('/tasks');
   } catch (error) {
     throw new Error(`There was an error creating the task ${error}`);
   }
 };
 
-export const getTasks = async ({ id, path }: Task) => {
+export const getTasks = async () => {
   try {
-    if (path === '/task') {
-      const tasks = await prisma.task.findMany();
-      return tasks;
-    } else {
-      const tasks = await prisma.task.findUnique({
-        where: {
-          id: id,
-        },
-      });
-      return tasks;
-    }
+    const tasks = await prisma.task.findMany();
+    return tasks;
   } catch (error) {
     throw new Error(`There was an error getting the tasks ${error}`);
   }

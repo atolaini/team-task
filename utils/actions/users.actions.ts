@@ -11,6 +11,9 @@ export const getUsers = async () => {
       orderBy: {
         firstName: 'asc',
       },
+      include: {
+        tasks: true,
+      },
     });
 
     return users;

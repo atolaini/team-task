@@ -1,31 +1,41 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import classes from '@/styles/layout/taskContainer.module.scss';
 import { v4 as uuid } from 'uuid';
 
-import { UserTask } from '@/utils/interfaces';
+import { User } from '@/utils/interfaces';
 
 interface SidetaskListProps {
-  taskData: UserTask[];
-}
-
-interface TaskValues {
-  userId: string;
-  name: string;
+  userTask: User[];
 }
 
 import Card from '../ui/card';
-import Button from '../ui/button';
-import { createTask } from '@/utils/api';
 
-const SideTaskList = ({ taskData }: SidetaskListProps) => {
+const SideTaskList = ({ userTask }: SidetaskListProps) => {
+  const [users, setUsers] = useState<User[]>([]);
+
+  useEffect(() => {
+    setUsers(userTask);
+  }, [userTask]);
+
+  const calculateTotalHours = (tasks: User[]) => {
+    return tasks.reduce((totalHours, task) => totalHours + task.hours, 0);
+  };
+
   return (
     <div className={classes.listContainer}>
       <h4>Tasks</h4>
       <ul>
         <li>
-          {taskData?.map((task: TaskValues) => (
+          {users?.map((task) => (
             <Card key={uuid()}>
               <p>Name:</p>
-              <p>{task.name}</p>
+              <p>{task.firstName}</p>
+              <p>Number of tasks</p>
+              <p>{task.tasks.length}</p>
+              <p>Total hours</p>
+              {calculateTotalHours(task.tasks)}
             </Card>
           ))}
         </li>

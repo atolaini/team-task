@@ -3,17 +3,25 @@ export interface Generics {
 }
 
 export interface User {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
   firstName: string;
   lastName: string;
-  id?: string;
+  tasks: Task[];
 }
 
 export interface Task {
-  title: FormDataEntryValue;
-  dueDate: FormDataEntryValue;
-  hours: FormDataEntryValue;
-  notes: FormDataEntryValue;
-  weekNumber: number;
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  userId: string;
+  user: User;
+  title: string;
+  dueDate: string | null;
+  hours: number;
+  notes: string | null;
+  weekNumber: string;
 }
 
 export interface UserTask {
